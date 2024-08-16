@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>'AI 시대의 프로그래머' 리뷰</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #content {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            max-width: 80%;
+        }
+        #debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(240, 240, 240, 0.8);
+            padding: 10px;
+            border: 1px solid #ccc;
+            z-index: 10001;
+            color: black;
+        }
+        #heygen-streaming-embed {
+            position: fixed !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+        #heygen-streaming-embed.expand {
+            width: 80vw !important;
+            height: 45vw !important;
+            max-width: 1280px !important;
+            max-height: 720px !important;
+        }
+        #book-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10002;
+        }
+        #book-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>'AI 시대의 프로그래머' 리뷰</h1>
+        <p>페이지 중앙에 아바타를 클릭하세요.</p>
+    </div>
+
+    <div id="debug-info">
+        <h3>디버그 정보</h3>
+        <p>스크립트 로드: <span id="script-load">대기 중...</span></p>
+        <p>아바타 상태: <span id="avatar-status">초기화되지 않음</span></p>
+    </div>
+
+    <a id="book-button" href="https://www.yes24.com/Product/Goods/130736603" target="_blank">도서 구매</a>
+
+    <script>
+        document.getElementById('script-load').textContent = '로드 시작...';
+    </script>
+
+    <script>!function(window){const host="https://labs.heygen.com",url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJXYXluZV8yMDI0MDcxMSIsInZvaWNlIjp7%0D%0AInZvaWNlX2lkIjoiZTUxNWQ3NDY1MjZmNDQ4ZmE1MzNhZmRkYzk3ZTQ5MzMifSwicHJldmlld0lt%0D%0AZyI6Imh0dHBzOi8vZmlsZXMyLmhleWdlbi5haS9hdmF0YXIvdjMvYTNmZGIwYzY1MjAyNGY3OTk4%0D%0ANGFhZWMxMWViZjI2OTRfMzQzNTAvcHJldmlld190YXJnZXQud2VicCIsIm5lZWRSZW1vdmVCYWNr%0D%0AZ3JvdW5kIjpmYWxzZSwia25vd2xlZGdlQmFzZUlkIjoiNmI3MTFjNGZkODY5NDAwODkzZTRhMTRm%0D%0ANTNiNGJkODkiLCJ1c2VybmFtZSI6IjA2Y2IzNmYwMjI1MzQwNDdhYTEzZTA2NjQ1MmQxYTU4In0%3D&inIFrame=1",clientWidth=document.body.clientWidth,wrapDiv=document.createElement("div");wrapDiv.id="heygen-streaming-embed";const container=document.createElement("div");container.id="heygen-streaming-container";const stylesheet=document.createElement("style");stylesheet.innerHTML=`\n  #heygen-streaming-embed {\n    z-index: 9999;\n    position: fixed;\n    left: 40px;\n    bottom: 40px;\n    width: 200px;\n    height: 200px;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);\n    transition: all linear 0.1s;\n    overflow: hidden;\n\n    opacity: 0;\n    visibility: hidden;\n  }\n  #heygen-streaming-embed.show {\n    opacity: 1;\n    visibility: visible;\n  }\n  #heygen-streaming-embed.expand {\n    ${clientWidth<540?"height: 266px; width: 96%; left: 50%; transform: translateX(-50%);":"height: 366px; width: calc(366px * 16 / 9);"}\n    border: 0;\n    border-radius: 8px;\n  }\n  #heygen-streaming-container {\n    width: 100%;\n    height: 100%;\n  }\n  #heygen-streaming-container iframe {\n    width: 100%;\n    height: 100%;\n    border: 0;\n  }\n  `;const iframe=document.createElement("iframe");iframe.allowFullscreen=!1,iframe.title="Streaming Embed",iframe.role="dialog",iframe.allow="microphone",iframe.src=url;let visible=!1,initial=!1;window.addEventListener("message",(e=>{e.origin===host&&e.data&&e.data.type&&"streaming-embed"===e.data.type&&("init"===e.data.action?(initial=!0,wrapDiv.classList.toggle("show",initial),document.getElementById('avatar-status').textContent = '초기화됨'):"show"===e.data.action?(visible=!0,wrapDiv.classList.toggle("expand",visible),document.getElementById('avatar-status').textContent = '확장됨'):"hide"===e.data.action&&(visible=!1,wrapDiv.classList.toggle("expand",visible),document.getElementById('avatar-status').textContent = '축소됨'))})),container.appendChild(iframe),wrapDiv.appendChild(stylesheet),wrapDiv.appendChild(container),document.body.appendChild(wrapDiv);document.getElementById('script-load').textContent = '로드 완료';}(globalThis);</script>
+
+    <script>
+        console.log('HeyGen 스크립트 로드 완료');
+    </script>
+</body>
+</html>
